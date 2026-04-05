@@ -22,12 +22,8 @@ document.getElementById("resume").addEventListener("click", async () => {
   chrome.tabs.sendMessage(tab.id, { command: "RESUME" });
 });
 
-document.getElementById("speed").addEventListener("change", async (e) => {
-  // add way to change the selected properties in the options of select in html tag in popup.html
-  const options = document.getElementById("speed").options;
-  for (const option of options) {
-    option.selected = option.value === e.target.value;
-  }
+document.getElementById("speedRange").addEventListener("change", async (e) => {
+  console.log("Speed changed to:", e.target.value);
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   chrome.tabs.sendMessage(tab.id, { command: "RATE", value: parseFloat(e.target.value) });
 });
