@@ -3,13 +3,11 @@ let rate = 1;
 let currentText = "";
 
 function startSpeech(text, speed = 1) {
-  if (speechSynthesis.speaking) speechSynthesis.cancel();
-  
-  currentText = text.slice(0, 500); // limit for demo
-  utterance = new SpeechSynthesisUtterance(currentText);
-  utterance.rate = speed;
-  speechSynthesis.speak(utterance);
-  console.log("Speaking started...");
+
+  chrome.runtime.sendMessage({
+    type: "START_STREAM",
+    text: document.body.innerText.slice(0, 1000) // limit to first 1000 chars for testing
+  });
 }
 
 function pauseSpeech() {
