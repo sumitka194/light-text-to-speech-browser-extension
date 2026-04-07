@@ -6,7 +6,7 @@ function startSpeech(text, speed = 1) {
 
   chrome.runtime.sendMessage({
     type: "START_STREAM",
-    text: document.body.innerText.slice(0, 1000) // limit to first 1000 chars for testing
+    text: document.body.innerText.slice(0, 1000) // limit to first 1000 chars for now
   });
 }
 
